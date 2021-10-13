@@ -18,19 +18,19 @@
                         <!-- Menu -->
                         <div class="hidden lg:block">
                             <ul class="flex items-center space-x-8 text-lg">
-                                <li class=" hover:text-blue-400"><a href="">about tracker</a></li>
-                                <li class=" hover:text-blue-400"><a href="">what you receive</a></li>
-                                <li class=" hover:text-blue-400"><a href="">how it works</a></li>
+                                <li class=" hover:text-blue-400"><a @click="scrollMeTo('#about')">about tracker</a></li>
+                                <li class=" hover:text-blue-400"><a @click="scrollMeTo('receive')">what you receive</a></li>
+                                <li class=" hover:text-blue-400"><a @click="scrollMeTo('howitworks')">how it works</a></li>
                             </ul>
                         </div>
     
                         <!-- Login btn -->
                         <div class="flex items-center justify-between">
-                            <a href="#" class="hidden md:flex btn-blue">
+                            <button @click="signIn" class="hidden md:flex btn-blue">
                                 Login with NEAR
                                 <img src="@/assets/img/near_logo_stack21.png" class="ml-3" alt="">
-                            </a>
-                            <a href="#" class="ml-2 lg:hidden"><img src="@/assets/img/menu.png" alt=""></a>
+                            </button>
+                            <button class="ml-2 lg:hidden"><img src="@/assets/img/menu.png" alt=""></button>
                         </div>
     
                     </div>
@@ -77,7 +77,23 @@
 </template>
 
 <script>
-export default {
+import store from '../store/store.js'
+import { wallet, CONTRACT_ID } from "@/services/near"
 
+
+export default {
+    methods: {
+        scrollMeTo(refName) {
+            var element = this.$els[refName];
+            element.scrollIntoView();
+        }
+    },
+    setup() {
+        const accountId = store.state.accountId
+        return {
+            accountId,
+            signIn: () => wallet.requestSignIn(CONTRACT_ID)
+        }
+    }
 }
 </script>

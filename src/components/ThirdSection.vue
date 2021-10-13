@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="receive">
         <div class="bg-gray-800 text-white">
             <div class="w-full bg-text">
                 <div class="container mx-auto px-6 py-32">

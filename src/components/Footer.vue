@@ -46,10 +46,10 @@
                     </ul>
                 </div>
 
-                <!-- Footer button -->
+                <!-- Footer button
                 <div class="flex justify-center items-center">
                     <a href="#" class="btn-blue mt-12 lg:mt-0">Go to dashboard</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </footer>

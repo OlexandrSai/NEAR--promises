@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="about">
         <div class="relative w-full bg-gray-800 text-white section-shadow">
 
             <div class="absolute top-0 right-0 lg:w-2/3 2xl:w-1/2">

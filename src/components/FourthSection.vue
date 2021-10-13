@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="howitworks">
         <div class="relative w-full bg-gray-800 section-shadow">
             
             <img src="@/assets/img/triangle1.png" alt="" class="absolute -bottom-1">

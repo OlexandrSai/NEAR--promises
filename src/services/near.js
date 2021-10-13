@@ -16,12 +16,19 @@ export const wallet = new WalletConnection(near, "promises");
 
 
 //function  to get all  my promises
-export const getPromises = () => {
-  return wallet.account().viewFunction(CONTRACT_ID, "getPromises", {target:"me"})
+export const getPromises = (param) => {
+    const  res = wallet.account().functionCall({
+        contractId: CONTRACT_ID,
+        methodName: "getPromises",
+        gas,
+        args: {accountId:"alxndrsai.testnet",target:param}
+    });
+console.log(res)
+  return res
 }
 
 //function to add new promise
-export const makeExtendedPromise = ({what, viewers, voters}) => {
+export const makeExtendedPromise = async ({what, viewers, voters}) => {
   return wallet.account().functionCall({
     contractId: CONTRACT_ID,
     methodName: "makeExtendedPromise",

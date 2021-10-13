@@ -6,11 +6,17 @@ import {
 //import store from '../store/store.js'
 
 export const usePromises = () => {
-    const promises = ref([]);
+    const promisesOfMe = ref([]);
+    const promisesOfOthers = ref([]);
     const  err = ref(null)
     onMounted(async () => {
       try {
-        promises.value  = await getPromises()
+        //let  res = []
+        getPromises("me").then(promises => {
+          console.log('fetched my promises: ', promises.length);
+        })
+        //console.log(await getPromises("me").then(promises=>console.log(promises.length)))
+        promisesOfOthers.value  = await getPromises("others")
       } catch (e) {
         err.value = e;
         console.log(err.value);
@@ -39,7 +45,8 @@ export const usePromises = () => {
     // };
   
     return {
-        promises,
+        promisesOfMe,
+        promisesOfOthers,
         makeExtendedPromise:handleAddNewExtendedPromise
     };
   };
