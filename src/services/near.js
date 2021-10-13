@@ -36,30 +36,3 @@ export const makeExtendedPromise = async ({what, viewers, voters}) => {
     args: {what, viewers, voters}
 });
 }
-
-// export const getComplaints = () => {
-//   return wallet.account().viewFunction(CONTRACT_ID, "getComplaints")
-// }
-
-// export const alreadyVoted = (userId) => {
-//   return wallet.account().viewFunction(CONTRACT_ID, "hasAlreadyVoted", {accountId:userId})
-// }
-
-// //function to add new complaint
-// export const addNewComplaint = ({title, description, category, location}) => {
-//   return wallet.account().functionCall({
-//     contractId: CONTRACT_ID,
-//     methodName: "addNewComplaint",
-//     gas,
-//     args: {title, description, category, location}
-// });
-// }
-
-// //function to vote
-// export const voteComplaint = (id) => {
-//   return wallet.account().functionCall({
-//     contractId: CONTRACT_ID,
-//     methodName: "voteComplaint",
-//     args: {id:id}
-// });
-// }
