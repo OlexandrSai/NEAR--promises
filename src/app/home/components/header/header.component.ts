@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NearService} from "../../../shared/services/near.service";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nearService: NearService) { }
 
   ngOnInit(): void {
   }
 
+  async signIn() {
+    await this.nearService.handleSignIn();
+  }
 }
