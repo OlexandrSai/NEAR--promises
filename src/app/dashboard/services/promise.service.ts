@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {NearService} from "../../shared/services/near.service";
-import {parseJson} from "@angular/cli/utilities/json-file";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromiseService {
+  public isLoading = false;
   public promisesOfMe: any = [];
   public promisesOfOthers: any[] = [];
   public err:any = null;
@@ -13,21 +13,16 @@ export class PromiseService {
   constructor(public nearService: NearService) { }
 
   async loadPromises() {
+    this.isLoading = true;
     try {
       this.promisesOfMe = await this.nearService.getPromises("me");
-      console.log(this.promisesOfMe)
-      // this.promisesOfMe = this.promisesOfMe.receipts_outcome[0].outcome.logs.map((x:any) => JSON.parse(x));
-      // this.promisesOfMe = JSON.parse(this.promisesOfMe);
-      // console.log(await this.nearService.getPromises("me"));
-//console.log(await getPromises("me").then(promises=>console.log(promises.length)))
-//       this.promisesOfOthers = await this.nearService.getPromises("others")
-
-      // console.log(this.promisesOfMe)
-      // console.log(this.promisesOfOthers)
+      // this.promisesOfOthers = await this.nearService.getPromises("others")
     } catch (e) {
       this.err = e;
       console.log(this.err);
+      this.isLoading = false;
     }
+    this.isLoading = false;
   }
 
 async handleAddNewExtendedPromise({ what, viewers, voters}: { what: any, viewers: any, voters: any}) {
@@ -37,7 +32,6 @@ async handleAddNewExtendedPromise({ what, viewers, voters}: { what: any, viewers
       this.err = e;
       console.log(this.err)
     }
-
 };
 
 // const handleVoteForComplaint = async (id) => {
