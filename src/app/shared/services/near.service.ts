@@ -43,19 +43,19 @@ export class NearService {
 
   //function  to get all  my promises
   async getPromises(param: any) {
-    const res = this.wallet.account().functionCall({
-      contractId: this.CONTRACT_ID,
-      methodName: "getPromises",
-      gas: this.gas,
-      args: {accountId: this.wallet.getAccountId(), target: param}
-    });
-    console.log(res)
-    return res
+    return await this.wallet.account().viewFunction(this.CONTRACT_ID, 'getPromises', { accountId: this.accountId, target: param});
+
+    // return await this.wallet.account().functionCall({
+    //   contractId: this.CONTRACT_ID,
+    //   methodName: "getPromises",
+    //   gas: this.gas,
+    //   args: { accountId: this.accountId, target: param}
+    // });
   }
 
   //function to add new promise
   async makeExtendedPromise({what, viewers, voters}: { what: any, viewers: any, voters: any }) {
-    return this.wallet.account().functionCall({
+    return await this.wallet.account().functionCall({
       contractId: this.CONTRACT_ID,
       methodName: "makeExtendedPromise",
       gas: this.gas,

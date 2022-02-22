@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { CreatePromiseComponent } from './components/create-promise/create-promise.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -11,7 +12,9 @@ import { CreatePromiseComponent } from './components/create-promise/create-promi
     CreatePromiseComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

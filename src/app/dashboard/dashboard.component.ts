@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PromiseService} from "./services/promise.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,12 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   public isOpen = false;
-  constructor() { }
+  public myProm: any[] = [];
+  constructor(public promiseService: PromiseService) { }
 
   ngOnInit(): void {
+    this.loadPromises();
+  }
+
+  async loadPromises() {
+    await this.promiseService.loadPromises();
+    this.myProm = this.promiseService.promisesOfMe;
   }
 
   toggleCreate() {
     this.isOpen = !this.isOpen
+  }
+
+  async signOut() {
+    await this.promiseService.nearService.handleSignOut();
   }
 }

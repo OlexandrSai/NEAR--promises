@@ -13,11 +13,9 @@
           <div class="mt-9 flex justify-center items-center w-24 h-24 rounded-full bg-gray-200">
             <img src="assets/img/photo-camera-interface-symbol-for-button1(1).png" alt="">
           </div>
-<!--          <p class="mt-6 text-white bg-gradient-to-r text-3xl from-blue-400 to-blue-500">{{accountId}}</p>-->
-          <p class="mt-6 text-white bg-gradient-to-r text-3xl from-blue-400 to-blue-500">accountId</p>
+          <p class="mt-6 text-white bg-gradient-to-r text-3xl from-blue-400 to-blue-500">{{promiseService.nearService.accountId}}</p>
           <p class="mt-3 text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices morbi molestie.</p>
-<!--          <button @click="signOut" class="mt-4 btn-red w-full text-white">Log out</button>-->
-          <button class="mt-4 btn-red w-full text-white">Log out</button>
+          <button (click)="signOut()" class="mt-4 btn-red w-full text-white">Log out</button>
         </div>
       </div>
     </div>
@@ -56,14 +54,12 @@
       </div>
 
 
-      <div v-for="promise in  promisesOfMe" :key="promise.id" class="hidden md:grid grid-cols-9 w-full bg-gray-700 rounded-full px-8 mt-3 py-1">
+      <div *ngFor="let promise of myProm" class="hidden md:grid grid-cols-9 w-full bg-gray-700 rounded-full px-8 mt-3 py-1">
         <!-- What -->
         <div class="col-span-3">
           <div class="flex h-full items-center">
             <p class="text-lg text-white">
-<!--              {{promise.what}}-->
-              promise.what
-
+              {{promise.what}}
             </p>
           </div>
         </div>
@@ -81,7 +77,6 @@
           <div class="flex justify-center h-full items-center">
             <a href="#" class="flex justify-center bg-green-300 p-2 border-2 border-white rounded-md">
               <img src="assets/img/Amazing.png" alt="" class="">
-
             </a>
             <a href="#" class="flex text-gray-400 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">

@@ -12,10 +12,10 @@
               </svg>
             </a>
           </div>
-          <form action="" class="w-full md:w-96 my-10">
+          <form [formGroup]="promiseForm" (ngSubmit)="submit()" action="" class="w-full md:w-96 my-10">
 
             <p class="text-gray-400 font-semibold text-lg">What you promise?</p>
-            <input type="text" placeholder="Study French" class="bg-white py-2 pl-6 outline-none w-full mt-2 rounded-md font-semibold text-lg border-2 border-white focus:border-blue-400">
+            <input [formControlName]="'title'" type="text" placeholder="Study French" class="bg-white py-2 pl-6 outline-none w-full mt-2 rounded-md font-semibold text-lg border-2 border-white focus:border-blue-400">
 
             <div class="flex justify-between items-baseline">
               <p class="text-gray-400 font-semibold text-lg mt-4">Link for voters</p>
@@ -23,7 +23,7 @@
             </div>
             <input type="text" placeholder="Type a NEAR ID...." class="bg-white py-2 pl-6 outline-none w-full mt-2 rounded-md font-semibold text-lg border-2 border-white focus:border-blue-400">
 
-            <a href="#" class="btn-blue text-white w-full mt-7 py-3">Yes, I do it!</a>
+            <button class="btn-blue text-white w-full mt-7 py-3">Yes, I do it!</button>
 
             <p class="text-gray-400 mt-8">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices morbi molestie.
