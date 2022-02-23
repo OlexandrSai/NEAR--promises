@@ -6,11 +6,11 @@
         <div class="py-10 px-6">
           <div class="-mt-12 home-title">Promise <span class="bg-gradient-to-r from-blue-400 to-blue-500">creation</span></div>
           <div class="flex justify-end">
-            <a href="#" class="text-white hover:text-blue-400">
+            <button (click)="toggle()" class="text-white hover:text-blue-400">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                 <path d="M16 14.1147L22.6 7.51467L24.4853 9.4L17.8853 16L24.4853 22.6L22.6 24.4853L16 17.8853L9.39998 24.4853L7.51465 22.6L14.1146 16L7.51465 9.4L9.39998 7.51467L16 14.1147Z" fill="currentColor"/>
               </svg>
-            </a>
+            </button>
           </div>
           <form [formGroup]="promiseForm" (ngSubmit)="submit()" action="" class="w-full md:w-96 my-10">
 

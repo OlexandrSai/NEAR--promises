@@ -33,21 +33,4 @@ async handleAddNewExtendedPromise({ what, viewers, voters}: { what: any, viewers
       console.log(this.err)
     }
 };
-
-// const handleVoteForComplaint = async (id) => {
-//   const  idToInt = parseInt(id)
-//   await voteComplaint(idToInt).then(async function()  {
-//     alert('here')
-//     complaints.value=await  getComplaints()
-//   });
-// };
-
-// const handleRemoveVoteForComplaint = async (id) => {
-//   const  idToInt = parseInt(id)
-//   await removeVote(idToInt).then(async function()  {
-//     complaints.value=await  getComplaints()
-//   }).then(async function()  {
-//     complaints.value=await alreadyVoted(store.state.accountId)
-//   })
-// };
 }

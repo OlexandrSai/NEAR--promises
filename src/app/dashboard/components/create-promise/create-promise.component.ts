@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {PromiseService} from "../../services/promise.service";
 
@@ -8,6 +8,8 @@ import {PromiseService} from "../../services/promise.service";
   styleUrls: ['./create-promise.component.css']
 })
 export class CreatePromiseComponent implements OnInit {
+  @Input() public isOpen = false
+  @Output() public isOpenChange = new EventEmitter<boolean>();
   public promiseForm = new FormGroup({
     title: new FormControl(''),
 
@@ -21,5 +23,10 @@ export class CreatePromiseComponent implements OnInit {
     console.log(this.promiseForm)
     await this.promiseService.handleAddNewExtendedPromise({what: this.promiseForm.value.title, viewers: [], voters: []})
     console.log('da')
+  }
+
+  toggle() {
+    this.isOpen = false;
+    this.isOpenChange.emit(this.isOpen);
   }
 }

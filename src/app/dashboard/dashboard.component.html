@@ -1,4 +1,4 @@
-<app-create-promise *ngIf="isOpen"></app-create-promise>
+<app-create-promise *ngIf="isOpen" [(isOpen)]="isOpen"></app-create-promise>
 <div class="flex h-screen bg-gray-700">
   <div class="hidden lg:block w-96 2xl:w-96 bg-gray-500 rounded-r-3xl section-shadow">
     <div class="w-full h-full left-bg">
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="relative w-full px-6 bg-text">
+  <div class="relative w-full px-6 bg-text overflow-scroll">
     <div class="w-full flex flex-col md:flex-row items-center justify-between text-white py-3">
 
       <div class="flex items-center">
@@ -114,6 +114,22 @@
                       </a>
                   </div> -->
           </div>
+          <div class="ml-auto col-span-3">
+            <div class="flex h-full items-center">
+              <button class="btn-blue w-10 text-white" style="width: 'auto', padding: '0 30px'">
+              Edit
+              </button>
+              <button class="ml-4 text-gray-400 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
         </div>
       </ng-template>
 
@@ -165,19 +181,18 @@
         </p>
       </div>
 
-
-      <!-- Pagination
+<!--      <app-pagination></app-pagination>-->
+<!--      &lt;!&ndash; Pagination-->
       <div class="flex items-center justify-center md:justify-end py-5 text-white  md:text-lg">
         <a href="#" class="px-2 hover:text-blue-400">Previous</a>
         <a href="#" class="px-2 hover:text-blue-400">1</a>
-         Active element
         <a href="#" class="border-b-2 border-blue-500 px-2 hover:text-blue-400">2</a>
         <a href="#" class="px-2 hover:text-blue-400">3</a>
         <a href="#" class="px-2 hover:text-blue-400">4</a>
         <a href="#" class="px-2 hover:text-blue-400">5</a>
         <a href="#" class="px-2 hover:text-blue-400">6</a>
         <a href="#" class="px-2 hover:text-blue-400">Next</a>
-    </div>  -->
+    </div>
 
     </div>
 
