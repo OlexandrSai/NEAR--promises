@@ -32,4 +32,8 @@ export class PromisesComponent implements OnInit {
   async delete(index: any) {
     await this.promService.delete(index);
   }
+
+  async edit(index: any) {
+    await this.promService.edit(index);
+  }
 }

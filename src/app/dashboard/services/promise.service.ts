@@ -43,4 +43,10 @@ export class PromiseService {
     await this.nearService.handleDelete(index);
     this.isLoading = false;
   }
+
+  async edit(index: any) {
+    this.isLoading = true;
+    await this.nearService.handleEdit(index);
+    this.isLoading = false;
+  }
 }

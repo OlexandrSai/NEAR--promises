@@ -71,4 +71,13 @@ export class NearService {
       args: {id: index}
     });
   }
+
+  async handleEdit(index: any) {
+    return await this.wallet.account().functionCall({
+      contractId: this.CONTRACT_ID,
+      methodName: "editPromise",
+      gas: this.gas,
+      args: {id: index}
+    });
+  }
 }
