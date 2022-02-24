@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {NearService} from "../../shared/services/near.service";
 
 @Injectable({
@@ -8,9 +8,10 @@ export class PromiseService {
   public isLoading = false;
   public promisesOfMe: any = [];
   public promisesOfOthers: any[] = [];
-  public err:any = null;
+  public err: any = null;
 
-  constructor(public nearService: NearService) { }
+  constructor(public nearService: NearService) {
+  }
 
   async loadPromises() {
     this.isLoading = true;
@@ -25,15 +26,21 @@ export class PromiseService {
     this.isLoading = false;
   }
 
-async handleAddNewExtendedPromise({ what, viewers, voters}: { what: any, viewers: any, voters: any}) {
+  async handleAddNewExtendedPromise({what, viewers, voters}: { what: any, viewers: any, voters: any }) {
     this.isLoading = true;
     try {
-      await this.nearService.makeExtendedPromise({ what, viewers, voters });
+      await this.nearService.makeExtendedPromise({what, viewers, voters});
       await this.loadPromises();
     } catch (e) {
       this.err = e;
       console.log(this.err)
     }
     this.isLoading = false;
-};
+  };
+
+  async delete(index: any) {
+    this.isLoading = true;
+    await this.nearService.handleDelete(index);
+    this.isLoading = false;
+  }
 }

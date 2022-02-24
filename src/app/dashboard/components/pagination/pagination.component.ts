@@ -6,7 +6,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-  @Input() public current:number = 1;
+  @Input() public current:number = 0;
   @Output() public currentChange = new EventEmitter<number>();
   @Input() public length: any = null;
   public pages = 1;
@@ -17,10 +17,7 @@ export class PaginationComponent implements OnInit {
   }
 
   async countPages() {
-    // this.
-    console.log('pashem')
-    console.log(this.length / 5)
-    this.pages = this.length / 5;
+    this.pages = Math.round(this.length / 5);
   }
 
   quantity(length: number) {
@@ -33,7 +30,6 @@ export class PaginationComponent implements OnInit {
   }
 
   handleStep(i: any) {
-
     this.handleMove(i>0 ? ++this.current : --this.current);
   }
 }

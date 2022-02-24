@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {format, fromUnixTime} from "date-fns";
+import {PromiseService} from "../../services/promise.service";
 
 @Component({
   selector: 'app-promises',
@@ -10,7 +11,7 @@ export class PromisesComponent implements OnInit {
   @Input() promises: any[] = [];
   public isOpenStatus = false;
   public currentOpen: any = 0;
-  constructor() { }
+  constructor(public promService: PromiseService) { }
 
   ngOnInit(): void {
   }
@@ -20,11 +21,15 @@ export class PromisesComponent implements OnInit {
   }
 
   toggleStatus(i: any) {
+    this.currentOpen = i;
     this.isOpenStatus = !this.isOpenStatus;
   }
 
   isOpenStatusCheck(index: any) {
-    console.log(index);
     return index === this.currentOpen && this.isOpenStatus;
+  }
+
+  async delete(index: any) {
+    await this.promService.delete(index);
   }
 }

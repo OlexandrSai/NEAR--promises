@@ -62,4 +62,13 @@ export class NearService {
       args: {what, viewers, voters}
     });
   }
+
+  async handleDelete(index: any) {
+    return await this.wallet.account().functionCall({
+      contractId: this.CONTRACT_ID,
+      methodName: "deletePromise",
+      gas: this.gas,
+      args: {id: index}
+    });
+  }
 }
