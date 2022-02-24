@@ -31,4 +31,9 @@ export class PaginationComponent implements OnInit {
     this.current = i;
     this.currentChange.emit(this.current);
   }
+
+  handleStep(i: any) {
+
+    this.handleMove(i>0 ? ++this.current : --this.current);
+  }
 }

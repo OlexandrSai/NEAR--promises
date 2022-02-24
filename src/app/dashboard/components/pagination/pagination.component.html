@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center md:justify-end py-5 text-white  md:text-lg">
-  <button (click)="handleMove(1)" class="px-2 hover:text-blue-400">Previous</button>
+  <button (click)="handleStep(0)" class="px-2 hover:text-blue-400">Previous</button>
   <button  *ngFor="let n of quantity(pages), let i = index" class="px-2 hover:text-blue-400" (click)="handleMove(i)">{{i + 1}}</button>
-  <button (click)="handleMove(1)" class="px-2 hover:text-blue-400">Next</button>
+  <button (click)="handleStep(1)" class="px-2 hover:text-blue-400">Next</button>
 </div>

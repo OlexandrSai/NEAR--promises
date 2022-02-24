@@ -1,0 +1,73 @@
+<div *ngFor="let promise of promises; let i = index"
+     class="hidden md:grid grid-cols-9 w-full bg-gray-700 rounded-full px-8 mt-3 py-1">
+  <!-- What -->
+  <div class="col-span-3">
+    <div class="flex h-full items-center">
+      <p class="text-lg text-white">
+        {{promise.what}}
+      </p>
+    </div>
+  </div>
+
+  <!-- When -->
+  <div class="col-span-2">
+    <div class="flex h-full items-center">
+      <img src="assets/img/image1442.png" alt="" class="mr-2">
+      <p class="text-white">{{formatDate(promise.timestamp)}}</p>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="relative ml-auto col-span-1" (click)="toggleStatus(i)">
+    <div class="flex justify-center h-full items-center">
+      <button class="flex justify-center bg-green-300 p-2 border-2 border-white rounded-md">
+        <img src="assets/img/Amazing.png" alt="" class="">
+      </button>
+      <button class="flex text-gray-400 hover:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path
+            d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"
+            fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+
+<!--     Progress bar (turn on this section when user want to change status)-->
+          <div *ngIf="isOpenStatusCheck(i)" class="absolute top-4 left-4 flex flex-col items-center bg-white" style="z-index: 100;">
+              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-green-300">
+                  <img src="assets/img/Amazing.png" alt="" class="">
+              </button>
+              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-green-300">
+                  <img src="assets/img/good.png" alt="" class="">
+              </button>
+              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-green-300">
+                  <img src="assets/img/Medium+.png" alt="" class="">
+              </button>
+              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-red-300">
+                  <img src="assets/img/Medium-.png" alt="" class="">
+              </button>
+              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-red-300">
+                  <img src="assets/img/Bag.png" alt="" class="">
+              </button>
+              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-red-300">
+                  <img src="assets/img/Ugly.png" alt="" class="">
+              </button>
+          </div>
+  </div>
+  <div class="ml-auto col-span-3">
+    <div class="flex h-full items-center">
+      <button class="btn-blue w-auto text-white" style="width: auto; padding: 0 30px">
+        Edit
+      </button>
+      <button class="ml-4 text-gray-400 hover:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</div>

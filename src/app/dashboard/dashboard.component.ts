@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PromiseService} from "./services/promise.service";
+import {format, fromUnixTime} from "date-fns";
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
   async pick(i: any) {
     this.current = i;
     this.myProm = this.loadedProm.slice((this.current * 5) - 5 , this.current*5)
+    console.log(this.myProm);
   }
 
   toggleCreate() {

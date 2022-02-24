@@ -5,6 +5,7 @@ import { CreatePromiseComponent } from './components/create-promise/create-promi
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoaderComponent} from "../shared/components/loader/loader.component";
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { PromisesComponent } from './components/promises/promises.component';
 
 
 
@@ -13,7 +14,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     DashboardComponent,
     CreatePromiseComponent,
     LoaderComponent,
-    PaginationComponent
+    PaginationComponent,
+    PromisesComponent
   ],
   imports: [
     CommonModule,
