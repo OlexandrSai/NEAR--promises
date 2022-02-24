@@ -1,4 +1,5 @@
 <app-create-promise *ngIf="isOpen" [(isOpen)]="isOpen"></app-create-promise>
+<app-loader *ngIf="promiseService.isLoading"></app-loader>
 <div class="flex h-screen bg-gray-700">
   <div class="hidden lg:block w-96 2xl:w-96 bg-gray-500 rounded-r-3xl section-shadow">
     <div class="w-full h-full left-bg">
@@ -43,9 +44,9 @@
 
       <h2 class="absolute -top-4 home-title">I <span class="bg-gradient-to-r from-blue-400 to-blue-500">promise</span>
       </h2>
-      <app-loader *ngIf="promiseService.isLoading; else elseBlock"></app-loader>
-      <ng-template #elseBlock>
-        <div class="hidden md:grid grid-cols-9 w-full text-gray-400 px-6 mt-16">
+
+
+        <div class="hidden md:grid grid-cols-9 w-full text-gray-400 px-6">
           <div class="col-span-3">
             <p class="">What</p>
           </div>
@@ -56,7 +57,7 @@
             <p class="text-center">Progress</p>
           </div>
         </div>
-
+<!--      <ng-template #elseBlock>-->
 
         <div *ngFor="let promise of myProm"
              class="hidden md:grid grid-cols-9 w-full bg-gray-700 rounded-full px-8 mt-3 py-1">
@@ -131,7 +132,7 @@
           </div>
 
         </div>
-      </ng-template>
+<!--      </ng-template>-->
 
 
       <!-- One promise mobile -->
@@ -176,250 +177,237 @@
           </div> -->
 
         </div>
-        <p class="text-white text-xl mt-4">
-          To be good
-        </p>
+<!--        <p class="text-white text-xl mt-4">-->
+<!--          To be good-->
+<!--        </p>-->
       </div>
-
-<!--      <app-pagination></app-pagination>-->
-<!--      &lt;!&ndash; Pagination-->
-      <div class="flex items-center justify-center md:justify-end py-5 text-white  md:text-lg">
-        <a href="#" class="px-2 hover:text-blue-400">Previous</a>
-        <a href="#" class="px-2 hover:text-blue-400">1</a>
-        <a href="#" class="border-b-2 border-blue-500 px-2 hover:text-blue-400">2</a>
-        <a href="#" class="px-2 hover:text-blue-400">3</a>
-        <a href="#" class="px-2 hover:text-blue-400">4</a>
-        <a href="#" class="px-2 hover:text-blue-400">5</a>
-        <a href="#" class="px-2 hover:text-blue-400">6</a>
-        <a href="#" class="px-2 hover:text-blue-400">Next</a>
-    </div>
-
+      <app-pagination *ngIf="!promiseService.isLoading" [length]="loadedProm.length" (currentChange)="changeCurrent($event)"></app-pagination>
     </div>
 
     <!-- People promise section -->
-    <div class="relative w-full bg-gray-600 px-6 rounded-3xl section-shadow pt-6 mt-12">
+<!--    <div class="relative w-full bg-gray-600 px-6 rounded-3xl section-shadow pt-6 mt-12">-->
 
-      <h2 class="absolute -top-4 home-title">People <span
-        class="bg-gradient-to-r from-blue-400 to-blue-500">promise</span></h2>
+<!--      <h2 class="absolute -top-4 home-title">People <span-->
+<!--        class="bg-gradient-to-r from-blue-400 to-blue-500">promise</span></h2>-->
 
-      <div class="hidden md:grid grid-cols-10 w-full text-gray-400 px-6 mt-16">
-        <div class="col-span-3">
-          <p class="">Person</p>
-        </div>
-        <div class="col-span-2">
-          <p class="">What</p>
-        </div>
-        <div class="col-span-2">
-          <p class="">When</p>
-        </div>
-        <div class="col-span-1">
-          <p class="text-center">Progress</p>
-        </div>
-      </div>
+<!--      <div class="hidden md:grid grid-cols-10 w-full text-gray-400 px-6 mt-16">-->
+<!--        <div class="col-span-3">-->
+<!--          <p class="">Person</p>-->
+<!--        </div>-->
+<!--        <div class="col-span-2">-->
+<!--          <p class="">What</p>-->
+<!--        </div>-->
+<!--        <div class="col-span-2">-->
+<!--          <p class="">When</p>-->
+<!--        </div>-->
+<!--        <div class="col-span-1">-->
+<!--          <p class="text-center">Progress</p>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <!-- One promise -->
-      <div class="hidden md:grid grid-cols-10 w-full bg-gray-700 rounded-full px-8 mt-3 py-1">
+<!--      &lt;!&ndash; One promise &ndash;&gt;-->
+<!--      <div class="hidden md:grid grid-cols-10 w-full bg-gray-700 rounded-full px-8 mt-3 py-1">-->
 
-        <!-- Person -->
-        <div class="col-span-3">
-          <div class="flex h-full items-center">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200"></div>
-            <div class="ml-3">
-              <p class="text-white text-lg">Alex Brown</p>
-              <p class="-mt-2 text-gray-400">alexbrown.near</p>
-            </div>
-          </div>
-        </div>
+<!--        &lt;!&ndash; Person &ndash;&gt;-->
+<!--        <div class="col-span-3">-->
+<!--          <div class="flex h-full items-center">-->
+<!--            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200"></div>-->
+<!--            <div class="ml-3">-->
+<!--              <p class="text-white text-lg">Alex Brown</p>-->
+<!--              <p class="-mt-2 text-gray-400">alexbrown.near</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <!-- What -->
-        <div class="col-span-2">
-          <div class="flex h-full items-center">
-            <p class="text-lg text-white">
-              To be good
-            </p>
-          </div>
-        </div>
+<!--        &lt;!&ndash; What &ndash;&gt;-->
+<!--        <div class="col-span-2">-->
+<!--          <div class="flex h-full items-center">-->
+<!--            <p class="text-lg text-white">-->
+<!--              To be good-->
+<!--            </p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <!-- When -->
-        <div class="col-span-2">
-          <div class="flex h-full items-center">
-            <img src="assets/img/image1442.png" alt="" class="mr-2">
-            <p class="text-white">26/06/2021</p>
-          </div>
-        </div>
+<!--        &lt;!&ndash; When &ndash;&gt;-->
+<!--        <div class="col-span-2">-->
+<!--          <div class="flex h-full items-center">-->
+<!--            <img src="assets/img/image1442.png" alt="" class="mr-2">-->
+<!--            <p class="text-white">26/06/2021</p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <!-- Progress -->
-        <div class="ml-auto col-span-1">
-          <div class="flex justify-center h-full items-center">
-            <a href="#" class="flex justify-center bg-green-300 p-2 border-2 border-white rounded-md">
-              <img src="assets/img/Amazing.png" alt="" class="">
+<!--        &lt;!&ndash; Progress &ndash;&gt;-->
+<!--        <div class="ml-auto col-span-1">-->
+<!--          <div class="flex justify-center h-full items-center">-->
+<!--            <a href="#" class="flex justify-center bg-green-300 p-2 border-2 border-white rounded-md">-->
+<!--              <img src="assets/img/Amazing.png" alt="" class="">-->
 
-            </a>
-            <a href="#" class="flex text-gray-400 hover:text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path
-                  d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"
-                  fill="currentColor"/>
-              </svg>
-            </a>
-          </div>
-        </div>
+<!--            </a>-->
+<!--            <a href="#" class="flex text-gray-400 hover:text-white">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">-->
+<!--                <path-->
+<!--                  d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"-->
+<!--                  fill="currentColor"/>-->
+<!--              </svg>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <!-- Button -->
-        <!-- <div class="ml-auto col-span-2">
-            <div class="flex h-full items-center">
-                <a href="#" class="btn-blue w-36 text-white">Edit</a>
-                <a href="#" class="ml-4 text-gray-400 hover:text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z" fill="currentColor"/>
-                    </svg>
-                </a>
-            </div>
-        </div> -->
-      </div>
-      <!-- One promise -->
-      <div class="hidden md:grid grid-cols-10 w-full bg-gray-700 rounded-full px-8 mt-6 py-1">
+<!--        &lt;!&ndash; Button &ndash;&gt;-->
+<!--        &lt;!&ndash; <div class="ml-auto col-span-2">-->
+<!--            <div class="flex h-full items-center">-->
+<!--                <a href="#" class="btn-blue w-36 text-white">Edit</a>-->
+<!--                <a href="#" class="ml-4 text-gray-400 hover:text-white">-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">-->
+<!--                        <path d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z" fill="currentColor"/>-->
+<!--                    </svg>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div> &ndash;&gt;-->
+<!--      </div>-->
+<!--      &lt;!&ndash; One promise &ndash;&gt;-->
+<!--      <div class="hidden md:grid grid-cols-10 w-full bg-gray-700 rounded-full px-8 mt-6 py-1">-->
 
-        <!-- Person -->
-        <div class="col-span-3">
-          <div class="flex h-full items-center">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200"></div>
-            <div class="ml-3">
-              <p class="text-white text-lg">Alex Brown</p>
-              <p class="-mt-2 text-gray-400">alexbrown.near</p>
-            </div>
-          </div>
-        </div>
+<!--        &lt;!&ndash; Person &ndash;&gt;-->
+<!--        <div class="col-span-3">-->
+<!--          <div class="flex h-full items-center">-->
+<!--            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200"></div>-->
+<!--            <div class="ml-3">-->
+<!--              <p class="text-white text-lg">Alex Brown</p>-->
+<!--              <p class="-mt-2 text-gray-400">alexbrown.near</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <!-- What -->
-        <div class="col-span-2">
-          <div class="flex h-full items-center">
-            <p class="text-lg text-white">
-              Start work faster and bee
-            </p>
-          </div>
-        </div>
+<!--        &lt;!&ndash; What &ndash;&gt;-->
+<!--        <div class="col-span-2">-->
+<!--          <div class="flex h-full items-center">-->
+<!--            <p class="text-lg text-white">-->
+<!--              Start work faster and bee-->
+<!--            </p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <!-- When -->
-        <div class="col-span-2">
-          <div class="flex h-full items-center">
-            <img src="assets/img/image1442.png" alt="" class="mr-2">
-            <p class="text-white">26/06/2021</p>
-          </div>
-        </div>
+<!--        &lt;!&ndash; When &ndash;&gt;-->
+<!--        <div class="col-span-2">-->
+<!--          <div class="flex h-full items-center">-->
+<!--            <img src="assets/img/image1442.png" alt="" class="mr-2">-->
+<!--            <p class="text-white">26/06/2021</p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <!-- Progress -->
-        <div class="ml-auto col-span-1">
-          <div class="flex justify-center h-full items-center">
-            <a href="#" class="flex justify-center bg-green-300 p-2 border-2 border-white rounded-md">
-              <img src="assets/img/Amazing.png" alt="" class="">
+<!--        &lt;!&ndash; Progress &ndash;&gt;-->
+<!--        <div class="ml-auto col-span-1">-->
+<!--          <div class="flex justify-center h-full items-center">-->
+<!--            <a href="#" class="flex justify-center bg-green-300 p-2 border-2 border-white rounded-md">-->
+<!--              <img src="assets/img/Amazing.png" alt="" class="">-->
 
-            </a>
-            <a href="#" class="flex text-gray-400 hover:text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path
-                  d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"
-                  fill="currentColor"/>
-              </svg>
-            </a>
-          </div>
-        </div>
+<!--            </a>-->
+<!--            <a href="#" class="flex text-gray-400 hover:text-white">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">-->
+<!--                <path-->
+<!--                  d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"-->
+<!--                  fill="currentColor"/>-->
+<!--              </svg>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
 
-      </div>
+<!--      </div>-->
 
-      <!-- One promise mobile -->
-      <div class="md:hidden bg-gray-700 rounded-3xl px-6 py-6 mt-6">
-        <div class="flex items-center">
+<!--      &lt;!&ndash; One promise mobile &ndash;&gt;-->
+<!--      <div class="md:hidden bg-gray-700 rounded-3xl px-6 py-6 mt-6">-->
+<!--        <div class="flex items-center">-->
 
-          <div class="flex h-full items-center">
-            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200"></div>
-            <div class="ml-1">
-              <p class="text-white text-lg">Alex B.</p>
-              <p class="-mt-2 text-gray-400 text-xs">alexbrown.near</p>
-            </div>
-          </div>
+<!--          <div class="flex h-full items-center">-->
+<!--            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200"></div>-->
+<!--            <div class="ml-1">-->
+<!--              <p class="text-white text-lg">Alex B.</p>-->
+<!--              <p class="-mt-2 text-gray-400 text-xs">alexbrown.near</p>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="ml-auto flex justify-center  h-full items-center">
-            <a href="#" class="flex justify-center w-11 bg-green-300 p-2 border-2 border-white rounded-md">
-              <img src="assets/img/Amazing.png" alt="" class="">
+<!--          <div class="ml-auto flex justify-center  h-full items-center">-->
+<!--            <a href="#" class="flex justify-center w-11 bg-green-300 p-2 border-2 border-white rounded-md">-->
+<!--              <img src="assets/img/Amazing.png" alt="" class="">-->
 
-            </a>
-            <a href="#" class="flex text-gray-400 hover:text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path
-                  d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"
-                  fill="currentColor"/>
-              </svg>
-            </a>
-          </div>
+<!--            </a>-->
+<!--            <a href="#" class="flex text-gray-400 hover:text-white">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">-->
+<!--                <path-->
+<!--                  d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"-->
+<!--                  fill="currentColor"/>-->
+<!--              </svg>-->
+<!--            </a>-->
+<!--          </div>-->
 
-          <a href="#" class="ml-4 text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"
-                fill="currentColor"/>
-            </svg>
-          </a>
+<!--          <a href="#" class="ml-4 text-gray-400 hover:text-white">-->
+<!--            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">-->
+<!--              <path-->
+<!--                d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"-->
+<!--                fill="currentColor"/>-->
+<!--            </svg>-->
+<!--          </a>-->
 
-        </div>
-        <div class="flex items-baseline justify-between mt-2">
-          <p class="text-white text-xl">To be good</p>
-          <p class="text-white">03/10/2021</p>
-        </div>
-      </div>
-      <!-- One promise mobile -->
-      <div class="md:hidden bg-gray-700 rounded-3xl px-6 py-6 mt-6">
-        <div class="flex items-center">
+<!--        </div>-->
+<!--        <div class="flex items-baseline justify-between mt-2">-->
+<!--          <p class="text-white text-xl">To be good</p>-->
+<!--          <p class="text-white">03/10/2021</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; One promise mobile &ndash;&gt;-->
+<!--      <div class="md:hidden bg-gray-700 rounded-3xl px-6 py-6 mt-6">-->
+<!--        <div class="flex items-center">-->
 
-          <div class="flex h-full items-center">
-            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200"></div>
-            <div class="ml-1">
-              <p class="text-white text-lg">Alex B.</p>
-              <p class="-mt-2 text-gray-400 text-xs">alexbrown.near</p>
-            </div>
-          </div>
+<!--          <div class="flex h-full items-center">-->
+<!--            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200"></div>-->
+<!--            <div class="ml-1">-->
+<!--              <p class="text-white text-lg">Alex B.</p>-->
+<!--              <p class="-mt-2 text-gray-400 text-xs">alexbrown.near</p>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="ml-auto flex justify-center  h-full items-center">
-            <a href="#" class="flex justify-center w-11 bg-green-300 p-2 border-2 border-white rounded-md">
-              <img src="assets/img/Amazing.png" alt="" class="">
+<!--          <div class="ml-auto flex justify-center  h-full items-center">-->
+<!--            <a href="#" class="flex justify-center w-11 bg-green-300 p-2 border-2 border-white rounded-md">-->
+<!--              <img src="assets/img/Amazing.png" alt="" class="">-->
 
-            </a>
-            <a href="#" class="flex text-gray-400 hover:text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path
-                  d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"
-                  fill="currentColor"/>
-              </svg>
-            </a>
-          </div>
+<!--            </a>-->
+<!--            <a href="#" class="flex text-gray-400 hover:text-white">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">-->
+<!--                <path-->
+<!--                  d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"-->
+<!--                  fill="currentColor"/>-->
+<!--              </svg>-->
+<!--            </a>-->
+<!--          </div>-->
 
-          <a href="#" class="ml-4 text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"
-                fill="currentColor"/>
-            </svg>
-          </a>
+<!--          <a href="#" class="ml-4 text-gray-400 hover:text-white">-->
+<!--            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">-->
+<!--              <path-->
+<!--                d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"-->
+<!--                fill="currentColor"/>-->
+<!--            </svg>-->
+<!--          </a>-->
 
-        </div>
-        <div class="flex items-baseline justify-between mt-2">
-          <p class="text-white text-xl">To be good</p>
-          <p class="text-white">03/10/2021</p>
-        </div>
-      </div>
+<!--        </div>-->
+<!--        <div class="flex items-baseline justify-between mt-2">-->
+<!--          <p class="text-white text-xl">To be good</p>-->
+<!--          <p class="text-white">03/10/2021</p>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <!-- Pagination
-      <div class="flex items-center justify-center md:justify-end py-5 text-white  md:text-lg">
-          <a href="#" class="px-2 hover:text-blue-400">Previous</a>
-          <a href="#" class="px-2 hover:text-blue-400">1</a>
-          Active element
-          <a href="#" class="border-b-2 border-blue-500 px-2 hover:text-blue-400">2</a>
-          <a href="#" class="px-2 hover:text-blue-400">3</a>
-          <a href="#" class="px-2 hover:text-blue-400">4</a>
-          <a href="#" class="px-2 hover:text-blue-400">5</a>
-          <a href="#" class="px-2 hover:text-blue-400">6</a>
-          <a href="#" class="px-2 hover:text-blue-400">Next</a>
-      </div> -->
-    </div>
+<!--      &lt;!&ndash; Pagination-->
+<!--      <div class="flex items-center justify-center md:justify-end py-5 text-white  md:text-lg">-->
+<!--          <a href="#" class="px-2 hover:text-blue-400">Previous</a>-->
+<!--          <a href="#" class="px-2 hover:text-blue-400">1</a>-->
+<!--          Active element-->
+<!--          <a href="#" class="border-b-2 border-blue-500 px-2 hover:text-blue-400">2</a>-->
+<!--          <a href="#" class="px-2 hover:text-blue-400">3</a>-->
+<!--          <a href="#" class="px-2 hover:text-blue-400">4</a>-->
+<!--          <a href="#" class="px-2 hover:text-blue-400">5</a>-->
+<!--          <a href="#" class="px-2 hover:text-blue-400">6</a>-->
+<!--          <a href="#" class="px-2 hover:text-blue-400">Next</a>-->
+<!--      </div> &ndash;&gt;-->
+<!--    </div>-->
   </div>
 </div>

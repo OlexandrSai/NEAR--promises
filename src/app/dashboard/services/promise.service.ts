@@ -26,11 +26,14 @@ export class PromiseService {
   }
 
 async handleAddNewExtendedPromise({ what, viewers, voters}: { what: any, viewers: any, voters: any}) {
+    this.isLoading = true;
     try {
       await this.nearService.makeExtendedPromise({ what, viewers, voters });
+      await this.loadPromises();
     } catch (e) {
       this.err = e;
       console.log(this.err)
     }
+    this.isLoading = false;
 };
 }

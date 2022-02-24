@@ -9,6 +9,8 @@ import {PromiseService} from "./services/promise.service";
 export class DashboardComponent implements OnInit {
   public isOpen = false;
   public myProm: any[] = [];
+  public loadedProm: any = [];
+  public current:number = 1;
   constructor(public promiseService: PromiseService) { }
 
   ngOnInit(): void {
@@ -17,7 +19,13 @@ export class DashboardComponent implements OnInit {
 
   async loadPromises() {
     await this.promiseService.loadPromises();
-    this.myProm = this.promiseService.promisesOfMe;
+    this.loadedProm = this.promiseService.promisesOfMe;
+    await this.pick(this.current)
+  }
+
+  async pick(i: any) {
+    this.current = i;
+    this.myProm = this.loadedProm.slice((this.current * 5) - 5 , this.current*5)
   }
 
   toggleCreate() {
@@ -26,5 +34,10 @@ export class DashboardComponent implements OnInit {
 
   async signOut() {
     await this.promiseService.nearService.handleSignOut();
+  }
+
+  async changeCurrent(e: any) {
+    console.log(e)
+    await this.pick(e + 1);
   }
 }

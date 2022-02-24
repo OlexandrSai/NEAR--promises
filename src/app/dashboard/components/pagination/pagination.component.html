@@ -1,10 +1,5 @@
 <div class="flex items-center justify-center md:justify-end py-5 text-white  md:text-lg">
-  <a href="#" class="px-2 hover:text-blue-400">Previous</a>
-  <a href="#" class="px-2 hover:text-blue-400">1</a>
-  <a href="#" class="border-b-2 border-blue-500 px-2 hover:text-blue-400">2</a>
-  <a href="#" class="px-2 hover:text-blue-400">3</a>
-  <a href="#" class="px-2 hover:text-blue-400">4</a>
-  <a href="#" class="px-2 hover:text-blue-400">5</a>
-  <a href="#" class="px-2 hover:text-blue-400">6</a>
-  <a href="#" class="px-2 hover:text-blue-400">Next</a>
+  <button (click)="handleMove(1)" class="px-2 hover:text-blue-400">Previous</button>
+  <button  *ngFor="let n of quantity(pages), let i = index" class="px-2 hover:text-blue-400" (click)="handleMove(i)">{{i + 1}}</button>
+  <button (click)="handleMove(1)" class="px-2 hover:text-blue-400">Next</button>
 </div>

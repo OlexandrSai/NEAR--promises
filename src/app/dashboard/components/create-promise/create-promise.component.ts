@@ -23,6 +23,7 @@ export class CreatePromiseComponent implements OnInit {
     console.log(this.promiseForm)
     await this.promiseService.handleAddNewExtendedPromise({what: this.promiseForm.value.title, viewers: [], voters: []})
     console.log('da')
+    this.toggle();
   }
 
   toggle() {

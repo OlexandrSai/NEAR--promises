@@ -1,8 +1,8 @@
 <div class="fixed top-0 left-0 w-full h-screen bg-form text-gray-400 z-10">
   <div class="h-full flex justify-center items-center">
     <div class="relative w-4/5 lg:w-2/3 bg-gray-600 rounded-3xl ">
-
       <div class="w-full h-full creation-bg">
+        <app-loader *ngIf="promiseService.isLoading"></app-loader>
         <div class="py-10 px-6">
           <div class="-mt-12 home-title">Promise <span class="bg-gradient-to-r from-blue-400 to-blue-500">creation</span></div>
           <div class="flex justify-end">
@@ -12,23 +12,25 @@
               </svg>
             </button>
           </div>
-          <form [formGroup]="promiseForm" (ngSubmit)="submit()" action="" class="w-full md:w-96 my-10">
+            <form [formGroup]="promiseForm" (ngSubmit)="submit()" action="" class="w-full md:w-96 my-10">
 
-            <p class="text-gray-400 font-semibold text-lg">What you promise?</p>
-            <input [formControlName]="'title'" type="text" placeholder="Study French" class="bg-white py-2 pl-6 outline-none w-full mt-2 rounded-md font-semibold text-lg border-2 border-white focus:border-blue-400">
+              <p class="text-gray-400 font-semibold text-lg">What you promise?</p>
+              <input [formControlName]="'title'" type="text" placeholder="Study French" class="bg-white py-2 pl-6 outline-none w-full mt-2 rounded-md font-semibold text-lg border-2 border-white focus:border-blue-400">
 
-            <div class="flex justify-between items-baseline">
-              <p class="text-gray-400 font-semibold text-lg mt-4">Link for voters</p>
-              <p class="text-gray-400 text-sm">not required</p>
-            </div>
-            <input type="text" placeholder="Type a NEAR ID...." class="bg-white py-2 pl-6 outline-none w-full mt-2 rounded-md font-semibold text-lg border-2 border-white focus:border-blue-400">
+              <div class="flex justify-between items-baseline">
+                <p class="text-gray-400 font-semibold text-lg mt-4">Link for voters</p>
+                <p class="text-gray-400 text-sm">not required</p>
+              </div>
+              <input type="text" placeholder="Type a NEAR ID...." class="bg-white py-2 pl-6 outline-none w-full mt-2 rounded-md font-semibold text-lg border-2 border-white focus:border-blue-400">
 
-            <button class="btn-blue text-white w-full mt-7 py-3">Yes, I do it!</button>
+              <button class="btn-blue text-white w-full mt-7 py-3">Yes, I do it!</button>
 
-            <p class="text-gray-400 mt-8">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices morbi molestie.
-            </p>
-          </form>
+              <p class="text-gray-400 mt-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices morbi molestie.
+              </p>
+            </form>
+
+
 
         </div>
       </div>

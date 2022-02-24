@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -6,10 +6,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-
+  @Input() public current:number = 1;
+  @Output() public currentChange = new EventEmitter<number>();
+  @Input() public length: any = null;
+  public pages = 1;
   constructor() { }
 
   ngOnInit(): void {
+    this.countPages();
   }
 
+  async countPages() {
+    // this.
+    console.log('pashem')
+    console.log(this.length / 5)
+    this.pages = this.length / 5;
+  }
+
+  quantity(length: number) {
+    return Array(length);
+  }
+
+  handleMove(i: any) {
+    this.current = i;
+    this.currentChange.emit(this.current);
+  }
 }
