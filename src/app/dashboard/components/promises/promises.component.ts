@@ -1,19 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {format, fromUnixTime} from "date-fns";
-import {PromiseService} from "../../services/promise.service";
+import { Component, Input } from '@angular/core';
+import { format, fromUnixTime } from "date-fns";
+import { PromiseService } from "../../services/promise.service";
 
 @Component({
   selector: 'app-promises',
   templateUrl: './promises.component.html',
   styleUrls: ['./promises.component.css']
 })
-export class PromisesComponent implements OnInit {
+export class PromisesComponent {
   @Input() promises: any[] = [];
   public isOpenStatus = false;
   public currentOpen: any = 0;
-  constructor(public promService: PromiseService) { }
 
-  ngOnInit(): void {
+  constructor(public promService: PromiseService) {
   }
 
   formatDate(data: any) {
@@ -31,6 +30,7 @@ export class PromisesComponent implements OnInit {
 
   async delete(index: any) {
     await this.promService.delete(index);
+
   }
 
   async edit(index: any) {

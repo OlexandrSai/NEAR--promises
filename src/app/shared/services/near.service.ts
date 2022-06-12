@@ -1,10 +1,7 @@
-import {Injectable} from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {keyStores, Near, utils, WalletConnection} from "near-api-js";
-import {Router} from "@angular/router";
-
-// @ts-ignore
-import BN from "bn.js";
+import { Injectable } from '@angular/core';
+import { environment } from "../../../environments/environment";
+import { Contract, keyStores, Near, WalletConnection } from "near-api-js";
+import { Router } from "@angular/router";
 
 
 @Injectable({
@@ -12,19 +9,55 @@ import BN from "bn.js";
 })
 export class NearService {
   public accountId = '';
-  public CONTRACT_ID = environment.NG_APP_CONTRACT_ID;
-  public gas = new BN(environment.NG_APP_gas);
-  public near = new Near({
-    networkId: environment.NG_APP_networkId,
-    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-    nodeUrl: environment.NG_APP_nodeUrl,
-    walletUrl: environment.NG_APP_walletUrl,
-    headers: {}
-  });
-  public wallet = new WalletConnection(this.near, "communite");
+  public CONTRACT_ID = environment.CONTRACT_ID;
+  public near: Near;
+  public wallet: WalletConnection;
+  public promisesContract: any;
 
   constructor(private router: Router) {
+    // connecting to NEAR
+    this.near = new Near({
+      networkId: environment.NETWORK_ID,
+      keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+      nodeUrl: environment.NODE_URL,
+      walletUrl: environment.WALLET_URL,
+      headers: {}
+    });
+
+    // create wallet connection
+    this.wallet = new WalletConnection(this.near, "promises");
     this.accountId = this.wallet.getAccountId();
+    // get contracts
+    this.promisesContract = this.getPromisesContract();
+  }
+
+  private getPromisesContract() {
+    return new Contract(
+      this.wallet.account(),
+      environment.CONTRACT_ID,
+      {
+        viewMethods: ['getPromises'],
+        changeMethods: ['makeExtendedPromise', 'deletePromise']
+      }
+    )
+  }
+
+  // get all  my promises
+  async getPromises(param: any) {
+    return await this.promisesContract.getPromises({ accountId: this.accountId, target: param });
+  }
+
+  // add new promise
+  async makeExtendedPromise({ what, viewers, voters }: { what: any, viewers: any, voters: any }) {
+    return await this.promisesContract.makeExtendedPromise({ what, viewers, voters });
+  }
+
+  async handleDelete(index: any) {
+    return await this.promisesContract.deletePromise({ promiseId: index });
+  }
+
+  async handleEdit(index: any) {
+    return await this.promisesContract.editPromise({ id: index });
   }
 
   async handleSignIn() {
@@ -39,45 +72,4 @@ export class NearService {
     this.accountId = ''
     this.router.navigate(['']);
   };
-
-
-  //function  to get all  my promises
-  async getPromises(param: any) {
-    return await this.wallet.account().viewFunction(this.CONTRACT_ID, 'getPromises', { accountId: this.accountId, target: param});
-
-    // return await this.wallet.account().functionCall({
-    //   contractId: this.CONTRACT_ID,
-    //   methodName: "getPromises",
-    //   gas: this.gas,
-    //   args: { accountId: this.accountId, target: param}
-    // });
-  }
-
-  //function to add new promise
-  async makeExtendedPromise({what, viewers, voters}: { what: any, viewers: any, voters: any }) {
-    return await this.wallet.account().functionCall({
-      contractId: this.CONTRACT_ID,
-      methodName: "makeExtendedPromise",
-      gas: this.gas,
-      args: {what, viewers, voters}
-    });
-  }
-
-  async handleDelete(index: any) {
-    return await this.wallet.account().functionCall({
-      contractId: this.CONTRACT_ID,
-      methodName: "deletePromise",
-      gas: this.gas,
-      args: {id: index}
-    });
-  }
-
-  async handleEdit(index: any) {
-    return await this.wallet.account().functionCall({
-      contractId: this.CONTRACT_ID,
-      methodName: "editPromise",
-      gas: this.gas,
-      args: {id: index}
-    });
-  }
 }
