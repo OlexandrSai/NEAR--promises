@@ -46,7 +46,7 @@
       </h2>
 
 
-        <div class="hidden md:grid grid-cols-9 w-full text-gray-400 px-6">
+        <div class="hidden md:grid grid-cols-8 w-full text-gray-400 px-6">
           <div class="col-span-3">
             <p class="">What</p>
           </div>
@@ -54,12 +54,14 @@
             <p class="">When</p>
           </div>
           <div class="col-span-1">
-            <p class="text-center">Progress</p>
+            <p class="">Yes Votes</p>
+          </div>
+          <div class="col-span-1">
+            <p class="">No Votes</p>
           </div>
         </div>
 
       <app-promises [promises]="myProm"></app-promises>
-<!--      <app-promises [promises]="otherProm"></app-promises>-->
 
 
       <!-- One promise mobile -->
@@ -109,6 +111,83 @@
 <!--        </p>-->
       </div>
       <app-pagination *ngIf="!promiseService.isLoading" [length]="loadedProm.length" (currentChange)="changeCurrent($event)"></app-pagination>
+    </div>
+
+    <!-- Other promise section -->
+    <div class="relative w-full bg-gray-600 px-6 rounded-3xl section-shadow pt-6 mt-6">
+
+      <h2 class="absolute -top-4 home-title">People <span class="bg-gradient-to-r from-blue-400 to-blue-500">promise</span>
+      </h2>
+
+
+      <div class="hidden md:grid grid-cols-8 w-full text-gray-400 px-6">
+        <div class="col-span-3">
+          <p class="">What</p>
+        </div>
+        <div class="col-span-2">
+          <p class="">When</p>
+        </div>
+        <div class="col-span-1">
+          <p class="">Yas Votes</p>
+        </div>
+        <div class="col-span-1">
+          <p class="">No Votes</p>
+        </div>
+        <div class="col-span-1">
+          <p class="">Action</p>
+        </div>
+      </div>
+
+      <app-promises-other [promises]="otherProm"></app-promises-other>
+
+
+      <!-- One promise mobile -->
+      <div class="md:hidden bg-gray-700 rounded-3xl px-6 py-6 mt-6">
+        <div class="flex">
+
+          <!-- When -->
+          <div class="">
+            <div class="flex h-full items-center">
+              <!-- <img src="./img/image 1442.png" alt="" class="mr-2"> -->
+              <p class="text-white text-xs">26/06/2021</p>
+            </div>
+          </div>
+
+          <!-- Progress -->
+          <div class="ml-auto ">
+            <div class="flex justify-center  w-20 h-20 items-center">
+              <a href="#" class="flex justify-center  bg-green-300 p-2 border-2 border-white rounded-md">
+                <img src="assets/img/Amazing.png" alt="" class="">
+
+              </a>
+              <a href="#" class="flex text-gray-400 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path
+                    d="M16.0001 20L10.3428 14.3427L12.2294 12.4573L16.0001 16.2293L19.7708 12.4573L21.6574 14.3427L16.0001 20Z"
+                    fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <!-- <div class="ml-auto ">
+              <div class="flex h-full items-center">
+                  <a href="#" class="btn-blue w-20 text-white">Edit</a>
+                  <a href="#" class="ml-4 text-gray-400 hover:text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z" fill="currentColor"/>
+                      </svg>
+                  </a>
+              </div>
+          </div> -->
+
+        </div>
+        <!--        <p class="text-white text-xl mt-4">-->
+        <!--          To be good-->
+        <!--        </p>-->
+      </div>
+      <app-pagination *ngIf="!promiseService.isLoading" [length]="loadedOtherProm.length" (currentChange)="changeCurrent($event)"></app-pagination>
     </div>
 
 

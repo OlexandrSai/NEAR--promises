@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoaderComponent } from "../shared/components/loader/loader.component";
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PromisesComponent } from './components/promises/promises.component';
+import { PromisesOtherComponent } from "./components/promises-other/promises-other.component";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { PromisesComponent } from './components/promises/promises.component';
     CreatePromiseComponent,
     LoaderComponent,
     PaginationComponent,
-    PromisesComponent
+    PromisesComponent,
+    PromisesOtherComponent
   ],
   imports: [
     CommonModule,

@@ -19,11 +19,15 @@ export class CreatePromiseComponent {
   }
 
   async submit() {
-    await this.promiseService.handleAddNewExtendedPromise({
-      what: this.promiseForm.value.title,
-      viewers: [this.promiseForm.value.voters],
-      voters: [this.promiseForm.value.voters]
-    })
+    let args: any = {
+      what: this.promiseForm.value.title
+    }
+
+    if (this.promiseForm.value.voters) {
+      args.viewers = args.voters = [this.promiseForm.value.voters];
+    }
+
+    await this.promiseService.handleAddNewExtendedPromise(args)
     this.toggle();
   }
 

@@ -3,11 +3,11 @@ import { format, fromUnixTime } from "date-fns";
 import { PromiseService } from "../../services/promise.service";
 
 @Component({
-  selector: 'app-promises',
-  templateUrl: './promises.component.html',
-  styleUrls: ['./promises.component.css']
+  selector: 'app-promises-other',
+  templateUrl: './promises-other.component.html',
+  styleUrls: ['./promises-other.component.css']
 })
-export class PromisesComponent {
+export class PromisesOtherComponent {
   @Input() promises: any[] = [];
   public isOpenStatus = false;
   public currentOpen: any = 0;

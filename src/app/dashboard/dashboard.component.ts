@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {PromiseService} from "./services/promise.service";
-import {format, fromUnixTime} from "date-fns";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +9,9 @@ import {format, fromUnixTime} from "date-fns";
 export class DashboardComponent implements OnInit {
   public isOpen = false;
   public myProm: any[] = [];
+  public otherProm: any[] = [];
   public loadedProm: any = [];
+  public loadedOtherProm: any = [];
   public current:number = 1;
   constructor(public promiseService: PromiseService) { }
 
@@ -21,13 +22,18 @@ export class DashboardComponent implements OnInit {
   async loadPromises() {
     await this.promiseService.loadPromises();
     this.loadedProm = this.promiseService.promisesOfMe;
+    this.loadedOtherProm = this.promiseService.promisesOfOthers;
+    console.log(this.loadedProm)
+    console.log(this.loadedOtherProm)
     await this.pick(this.current)
   }
 
   async pick(i: any) {
+    // TODO: Make change depends on which table we use
     this.current = i;
-    this.myProm = this.loadedProm.slice((this.current * 5) - 5 , this.current*5)
-    console.log(this.myProm);
+    this.myProm = this.loadedProm.slice((this.current * 5) - 5 , this.current*5);
+    this.otherProm = this.loadedOtherProm.slice((this.current * 5) - 5 , this.current*5);
+
   }
 
   toggleCreate() {

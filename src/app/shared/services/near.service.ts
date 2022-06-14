@@ -37,7 +37,7 @@ export class NearService {
       environment.CONTRACT_ID,
       {
         viewMethods: ['getPromises'],
-        changeMethods: ['makeExtendedPromise', 'deletePromise']
+        changeMethods: ['makePromise', 'deletePromise']
       }
     )
   }
@@ -49,7 +49,7 @@ export class NearService {
 
   // add new promise
   async makeExtendedPromise({ what, viewers, voters }: { what: any, viewers: any, voters: any }) {
-    return await this.promisesContract.makeExtendedPromise({ what, viewers, voters });
+    return await this.promisesContract.makePromise({ what, viewers, voters });
   }
 
   async handleDelete(index: any) {

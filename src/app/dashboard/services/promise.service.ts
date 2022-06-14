@@ -18,7 +18,7 @@ export class PromiseService {
     this.isLoading = true;
     try {
       this.promisesOfMe = await this.nearService.getPromises("me");
-      // this.promisesOfOthers = await this.nearService.getPromises("others")
+      this.promisesOfOthers = await this.nearService.getPromises("others")
     } catch (e) {
       this.err = e;
     } finally {
