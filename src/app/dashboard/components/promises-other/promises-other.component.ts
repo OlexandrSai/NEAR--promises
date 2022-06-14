@@ -28,11 +28,7 @@ export class PromisesOtherComponent {
     return index === this.currentOpen && this.isOpenStatus;
   }
 
-  async delete(index: any) {
-    await this.promService.delete(index);
-  }
-
-  async edit(index: any) {
-    await this.promService.edit(index);
+  vote(index: any, value: any) {
+    return this.promService.vote(index, value)
   }
 }

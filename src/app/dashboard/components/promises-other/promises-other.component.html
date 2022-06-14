@@ -44,27 +44,12 @@
         </svg>
       </button>
     </div>
-
-<!--     Progress bar (turn on this section when user want to change status)-->
-
           <div *ngIf="isOpenStatusCheck(i)" class="absolute top-16 flex flex-col items-center bg-white rounded-md" style="z-index: 100; max-width: 58px;">
-              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-green-300">
-                  <img src="assets/img/Amazing.png" alt="" class="">
-              </button>
-              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-green-300">
+              <button (click)="vote(i, true)"  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-green-300">
                   <img src="assets/img/good.png" alt="" class="">
               </button>
-              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-green-300">
-                  <img src="assets/img/Medium+.png" alt="" class="">
-              </button>
-              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-red-300">
-                  <img src="assets/img/Medium-.png" alt="" class="">
-              </button>
-              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-red-300">
+              <button (click)="vote(i, false)" class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-red-300">
                   <img src="assets/img/Bag.png" alt="" class="">
-              </button>
-              <button  class="flex justify-center p-2 m-1 border-white rounded-md hover:bg-red-300">
-                  <img src="assets/img/Ugly.png" alt="" class="">
               </button>
           </div>
   </div>

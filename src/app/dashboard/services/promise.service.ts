@@ -59,6 +59,13 @@ export class PromiseService {
     this.isLoading = false;
   }
 
+  async vote(index: any, value: any) {
+    this.isLoading = true;
+    await this.nearService.handleVote(index, value);
+    this.isLoading = false;
+  }
+
+
   async requestHandler(callback: Function) {
     this.isLoading = true;
     try {

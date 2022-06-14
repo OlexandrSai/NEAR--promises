@@ -37,7 +37,7 @@ export class NearService {
       environment.CONTRACT_ID,
       {
         viewMethods: ['getPromises'],
-        changeMethods: ['makePromise', 'deletePromise']
+        changeMethods: ['makePromise', 'deletePromise', 'vote']
       }
     )
   }
@@ -58,6 +58,10 @@ export class NearService {
 
   async handleEdit(index: any) {
     return await this.promisesContract.editPromise({ id: index });
+  }
+
+  async handleVote(index: any, value: any) {
+    return await this.promisesContract.vote({ promiseId: index, value: value });
   }
 
   async handleSignIn() {
